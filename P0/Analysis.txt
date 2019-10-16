@@ -1,0 +1,10 @@
+# Project 0: Data Structures and Algorithms Nanodegree
+
+## Big-O worst-case runtime computational efficiency
+
+- Task0: O(1)
+- Task1: O(n^2)
+- Task2: O(2*n^2+n) = O(n^2)
+- Task3:
+- Task4:
+
