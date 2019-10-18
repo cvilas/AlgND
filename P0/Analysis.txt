@@ -20,10 +20,15 @@ number in the database that has been on call longest (another dictionary search 
 dictionary search by maintaining a running update for the phone number with the longest duration as we go through
 the list
 
-### Task3:
-- Efficiency:
-- Rationale:
+### Task3
+- Efficiency: O(n.log(n))
+- Rationale: Stepping through list of calls is O(n), extracting area code of the called number is not O(1) but not 
+quite O(n) and therefore ignored, adding unique area code to existing list of called numbers is O(log(n)). After this
+the list of area codes is sorted lexicographically. The complexity here depends on sorting algorithm, but it is likely
+to be O(n.log(n))
 
-### Task4:
-- Efficiency:
-- Rationale:
+### Task4
+- Efficiency: O(8.n.log(n)) = ~O(n.log(n))
+- Rationale: We go through list of calls and texts (each O(n)) and extract unique callers, texters, text receivers, 
+and call receivers (each O(log(n)), and then we search again for unique callers who are not in the other lists created
+above (O(log(n)). Finally we do a lexicographic sort which is O(n.log(n))

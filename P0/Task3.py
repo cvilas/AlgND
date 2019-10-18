@@ -32,7 +32,27 @@ Print the answer as part of a message:
 "The numbers called by people in Bangalore have codes:"
  <list of codes>
 The list of codes should be print out one per line in lexicographic order with no duplicates.
+"""
+calls_to = []
+for record in calls:
+    if "(080)" in record[0]: # calling number is from Bangalore
 
+        # if fixed line, extract area code which is in brackets
+        # if mobile number extract area code which is first four digits if starting with [7,8,9]
+        # # We can ignore telemarketers (area code 140) because they never receive calls
+
+        # this will either extract digits in parenthesis or the entire number (10 digits)
+        area_code = record[1][record[1].find("(")+1:record[1].find(")")]
+        if len(area_code) is 10:
+            area_code = area_code[0:4]
+        if area_code not in calls_to:
+            calls_to.append(area_code)
+calls_to.sort()
+print("The numbers called by people in Bangalore have codes:")
+print(*calls_to, sep="\n")
+
+
+"""
 Part B: What percentage of calls from fixed lines in Bangalore are made
 to fixed lines also in Bangalore? In other words, of all the calls made
 from a number starting with "(080)", what percentage of these calls
@@ -43,3 +63,7 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+calls_to_bang = calls_to.count("080")
+percent = 100 * calls_to_bang/len(calls_to)
+print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(round(percent,2)))
