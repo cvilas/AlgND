@@ -33,9 +33,12 @@ Print the answer as part of a message:
  <list of codes>
 The list of codes should be print out one per line in lexicographic order with no duplicates.
 """
-calls_to = []
+unique_calls_to = []
+num_calls_from_080 = 0
+num_calls_from_080_to_080 = 0
 for record in calls:
     if "(080)" in record[0]: # calling number is from Bangalore
+        num_calls_from_080 += 1
 
         # if fixed line, extract area code which is in brackets
         # if mobile number extract area code which is first four digits if starting with [7,8,9]
@@ -45,12 +48,14 @@ for record in calls:
         area_code = record[1][record[1].find("(")+1:record[1].find(")")]
         if len(area_code) is 10:
             area_code = area_code[0:4]
-        if area_code not in calls_to:
-            calls_to.append(area_code)
-calls_to.sort()
-print("The numbers called by people in Bangalore have codes:")
-print(*calls_to, sep="\n")
+        if area_code not in unique_calls_to:
+            unique_calls_to.append(area_code)
+        if "080" == area_code:  # called number is also Bangalore based
+            num_calls_from_080_to_080 += 1
 
+unique_calls_to.sort()
+print("The numbers called by people in Bangalore have codes:")
+print(*unique_calls_to, sep="\n")
 
 """
 Part B: What percentage of calls from fixed lines in Bangalore are made
@@ -64,6 +69,5 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 
-calls_to_bang = calls_to.count("080")
-percent = 100 * calls_to_bang/len(calls_to)
+percent = 100. * num_calls_from_080_to_080/float(num_calls_from_080)
 print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(round(percent,2)))

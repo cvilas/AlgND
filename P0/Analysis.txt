@@ -13,9 +13,9 @@
  repeat the same procedure for list of texts.
 
 ### Task2
-- Efficiency: O(2.n.log(n) + n) = ~O(n.log(n))
+- Efficiency: O(2.n.n + n) = ~O(n^2)
 - Rationale: We go through the entire list of calls (O(n)) and for each one find the calling and receiving number
-in the database of numbers (dictionary search - O(log(n))) and add call duration to them. Finally, we find the
+in the database of numbers (dictionary search - O(n) worst case) and add call duration to them. Finally, we find the
 number in the database that has been on call longest (another dictionary search - O(n)). We could avoid the final
 dictionary search by maintaining a running update for the phone number with the longest duration as we go through
 the list
