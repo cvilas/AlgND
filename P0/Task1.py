@@ -37,3 +37,14 @@ for record in calls:
         unique_numbers.append(receiving_number)
 
 print("There are {} different telephone numbers in the records.".format(len(unique_numbers)))
+
+"""
+Reviewer comments:
+The previous reviewer mentioned this already, but using sets is extremely beneficial here. Not only because it can simplify your code because sets don't allow for duplicates, but also because it would be a more efficient approach.
+
+Dictionaries and sets in python are implemented using hashmaps (underlying data structures, you might learn about them later in the ND). The worst-case scenario for item lookup or adding an item or removing one, is technically O(n).
+
+However, that worst-case scenario rarely ever happens (if you want more details you can check this source - https://stackoverflow.com/questions/1963507/time-complexity-of-accessing-a-python-dict ). So for all purposes, it's more accurate to consider the average case scenario which is O(1).
+
+And therefore you won't have a quadratic time complexity when using sets here.
+"""

@@ -55,3 +55,14 @@ potential_telemarketers.sort()
 print("These numbers could be telemarketers: ")
 print(*potential_telemarketers, sep="\n")
 
+"""
+Reviewer's comments:
+As I mentioned for Task 1, sets can help you with efficiency in this case as well. Here is an alternative solution using sets (and related operations) that is very concise and efficient that you can refer to -
+
+
+check_list = set([item[0] for item in texts] + [item[1] for item in texts] + [item[1] for item in calls])
+
+possible_list = set([item[0] for item in calls])
+final_list = possible_list - check_list
+print("These numbers could be telemarketers:  \n" + "\n".join(sorted(final_list)))
+"""

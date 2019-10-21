@@ -20,6 +20,16 @@ number in the database that has been on call longest (another dictionary search 
 dictionary search by maintaining a running update for the phone number with the longest duration as we go through
 the list
 
+(Reviewer comments: I mentioned this in the code review, but still -
+
+Dictionaries and sets in python are implemented using hashmaps (underlying data structures, you might learn about them
+later in the ND). The worst-case scenario for item lookup or adding an item or removing one, is technically O(n). Based
+on that, your analysis is correct.
+
+However, that worst-case scenario rarely ever happens (if you want more details you can check this source
+- https://stackoverflow.com/questions/1963507/time-complexity-of-accessing-a-python-dict ). So for all purposes, it's
+more accurate to consider the average case scenario which is O(1).)
+
 ### Task3
 - Efficiency: O(n.log(n))
 - Rationale: Stepping through list of calls is O(n), extracting area code of the called number is not O(1) but not 
@@ -27,8 +37,21 @@ quite O(n) and therefore ignored, adding unique area code to existing list of ca
 the list of area codes is sorted lexicographically. The complexity here depends on sorting algorithm, but it is likely
 to be O(n.log(n))
 
+(Reviewer comments: Not entirely correct here. You have a for loop, and then in that loop you grow the unique list, but
+you also, in every iteration of the for loop, check whether the code is already in that list or not, so the worst-case
+scenario for that is closer to O(n^2) than it is O(logn).
+
+So your final complexity, for the worst-case scenario, is closer to O(n^2) than O(nlogn).)
+
+
 ### Task4
 - Efficiency: O(8.n.log(n)) = ~O(n.log(n))
 - Rationale: We go through list of calls and texts (each O(n)) and extract unique callers, texters, text receivers, 
 and call receivers (each O(log(n)), and then we search again for unique callers who are not in the other lists created
 above (O(log(n)). Finally we do a lexicographic sort which is O(n.log(n))
+
+(Reviewer comments: My point above for Task 3 applies here as well.
+
+Also, you have a for loop, and inside the loop you check for whether a number is inside a list or not. In the worst-
+case scenario, that would be equivalent to iterating through an entire list to find the number. Which makes it like a 
+nested for loop scenario, and the resulting, worst-case time complexity would be closer to O(n^2).)

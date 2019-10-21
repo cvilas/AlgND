@@ -39,3 +39,18 @@ for record in calls:
 phone_number = max(time_spent, key=time_spent.get)
 
 print("{} spent the longest time, {} seconds, on the phone during September 2016.".format(phone_number, time_spent[phone_number]))
+
+"""
+Reviewer comments:
+
+Instead of the current approach you can use python's built-ins/standard libraries to simplify things for you. The defaultdict from the collections library can be used for building a dictionary where if a key already exists the value is modified in some way, but if the key doesn’t exist some type of default value is entered
+
+from collections import defaultdict
+
+call_dict = defaultdict(int)
+for call in calls:
+    call_dict[call[0]] += int(call[3])
+    call_dict[call[1]] += int(call[3])
+
+Defaultdict will automatically fill in missing keys with when required.
+"""

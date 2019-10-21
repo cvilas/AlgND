@@ -71,3 +71,10 @@ The percentage should have 2 decimal digits
 
 percent = 100. * num_calls_from_080_to_080/float(num_calls_from_080)
 print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(round(percent,2)))
+
+"""
+Reviewer comments:
+
+You can convert a list into a set simply by doing set(list_name) later. So if you convert your unique_calls_to list to a set, all the duplicate values will get removed. And you can do this outside of the loop, right at the end, which separates out the need for this check and thereby saves on efficiency since converting a list to a set is not that computationally expensive either compared to the somewhat quadratic complexity you get now (more on this in the analysis file review)
+
+"""
